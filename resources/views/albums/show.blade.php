@@ -43,7 +43,16 @@
                     </form>
 
                     @foreach ($images as $image)
-                    <img src="{{url( $image->getUrl())  }}" width="100" height="100" class="" alt="">
+                    <ul>
+                            <img src="{{url( $image->getUrl())  }}" width="100" height="100" class="" alt="">
+                            <a href="{{ route('albums.image.show', [$album->id, $image->id] ) }}" class="btn btn-primary">Show Image</a>
+                            <a class="btn btn-danger">
+                                <form method="POST" action="{{ route('albums.image.destroy', [$album->id, $image->id]) }}">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-danger btn-sm">Delete</button>
+                            </form></a>
+                    </ul>                    
                     @endforeach
                 </div>
             </div>

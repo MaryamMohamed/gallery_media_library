@@ -62,11 +62,6 @@ class AlbumController extends Controller
     {
         //
         $images = $album->getMedia();
-        /*foreach ($images as $image) {
-            # code...
-            dd($image->getPath());
-        }*/
-        
         return view('albums.show', compact('album', 'images'));
     }
 
@@ -129,6 +124,24 @@ class AlbumController extends Controller
             # code...
             $album->addMedia($request->image)->toMediaCollection();
         }
+        return redirect()->back();
+    }
+
+    public function showImage(Album $album, $id)
+    {
+        # code...
+        $images = $album->getMedia();
+        $anImage = $images->where('id', $id)->first();
+        return view('albums.image', compact('album', 'anImage'));
+
+    }
+
+    public function destroyImage(Album $album, $id)
+    {
+        # code...
+        $images = $album->getMedia();
+        $anImage = $images->where('id', $id)->first();
+        $anImage->delete();
         return redirect()->back();
     }
 }

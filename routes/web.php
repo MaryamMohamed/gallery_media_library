@@ -19,3 +19,5 @@ Route::get('/', function () {
 
 Route::resource('/albums', AlbumController::class);
 Route::post('albums/{album}/upload', [AlbumController::class, 'upload'])->name('albums.upload');
+Route::get('albums/{album}/image/{image}', [AlbumController::class, 'showImage'])->name('albums.image.show');
+Route::delete('albums/{album}/image/{image}', [AlbumController::class, 'destroyImage'])->name('albums.image.destroy');
