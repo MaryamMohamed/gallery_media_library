@@ -46,7 +46,7 @@
                     <ul>
                             <img src="{{url( $image->getUrl())  }}" width="100" height="100" class="" alt="">
                             <a href="{{ route('albums.image.show', [$album->id, $image->id] ) }}" class="btn btn-primary">Show Image</a>
-                            <a class="btn btn-danger">
+                            <a class="btn btn-danger" onclick="return confirm('Are you sure?')">
                                 <form method="POST" action="{{ route('albums.image.destroy', [$album->id, $image->id]) }}">
                                 @csrf
                                 @method('DELETE')
